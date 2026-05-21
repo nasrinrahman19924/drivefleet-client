@@ -1,21 +1,21 @@
 
-🚗 DriveFleet BD - Car Rental Platform
+ DriveFleet BD - Car Rental Platform
 
-🌐 Live Website
+ Live Website
 
 Frontend: https://drivefleet-client-dd1z.vercel.app
 Backend: https://drivefleet-server-psi-dusky.vercel.app
 
-📌 Project Overview
+ Project Overview
 
 DriveFleet BD is a full-stack MERN based Car Rental Platform where users can explore available cars, book cars, manage their own listed vehicles, and securely authenticate using Email/Password or Google Login.
 
 This platform includes modern UI/UX, JWT Authentication, Protected Routes, Search & Filter functionality, Booking System, and Responsive Design.
 
-✨ Key Features
+ Key Features
 
 
-🔐 Authentication & Security
+ Authentication & Security
 
 User Registration & Login
 Google Authentication
@@ -23,7 +23,8 @@ JWT Token Authentication
 HTTPOnly Cookie Security
 Protected Private Routes
 Secure Backend API
-🚘 Car Management
+
+ Car Management
 
 Add New Car
 Update Car Information
@@ -32,7 +33,7 @@ View All Cars
 View Car Details
 Availability Status
 
-📅 Booking System
+Booking System
 
 Book Available Cars
 Driver Requirement Option
@@ -41,13 +42,13 @@ Total Price Calculation
 My Bookings Page
 Booking Count Increment System
 
-🔍 Search & Filter
+ Search & Filter
 
 Search Cars by Name
 Filter by Car Type
 Dynamic Query Support
 
-🎨 UI/UX Features
+ UI/UX Features
 
 Fully Responsive Design
 Modern Interface
@@ -57,7 +58,7 @@ Sweet User Experience
 Custom 404 Page
 
 
-🛠️ Technologies Used
+ Technologies Used
 
 ####Frontend
 
@@ -81,7 +82,7 @@ Google Login
 JWT Authentication
 
 
-📂 Project Structure
+ Project Structure
 
 src/
 │
@@ -108,7 +109,7 @@ src/
 
 
 
-🗄️ Database Collections
+ Database Collections
 
 
 
@@ -137,7 +138,7 @@ Bookings Collection
 }
 
 
-🔑 JWT Authentication Flow
+ JWT Authentication Flow
 
 Login Process
 User logs in
@@ -151,7 +152,7 @@ res.cookie("token", token,{
 })
 
 
-🔒 Protected Routes
+ Protected Routes
 
 The following routes are private:
 
@@ -163,14 +164,14 @@ Users must be authenticated to access these pages.
 
 
 
-🔎 Search Functionality
+ Search Functionality
 
 Users can search cars dynamically by car name.
 
 /cars?search=sports
 
 
-🎯 Filter Functionality
+ Filter Functionality
 
 Cars can be filtered by type:
 SUV
@@ -179,19 +180,20 @@ Sports
 Luxury
 
 
-📈 Booking Count Increment
+ Booking Count Increment
 
 Every successful booking increases the booking count automatically using MongoDB $inc.
 
 $inc:{
    booking_count:1
 }
-🚀 Deployment
+
+Deployment
 
 Frontend Deployment:: Vercel
 Backend Deployment:: Vercel
 
-⚙️ Environment Variables
+ Environment Variables
 
 Client Side
 
@@ -209,7 +211,7 @@ JWT_SECRET=
 PORT=
 
 
-📸 Home Page Sections
+ Home Page Sections
 
 Hero Banner
 Available Cars
@@ -217,7 +219,9 @@ Footer
 
 
 Premium Services
-📱 Responsive Design
+
+
+ Responsive Design
 
 This project is fully responsive for:
 
@@ -226,7 +230,7 @@ Tablets
 Laptops
 Desktop Screens
 
-📦 NPM Packages Used
+NPM Packages Used
 
 npm install react-hot-toast
 npm install axios
@@ -237,11 +241,11 @@ npm install mongodb
 npm better auth and many more
 
 
-👨‍💻 Author
+ Author
 
 
 G. M. SHAHINUR RAHMAN
 
-📄 License
+ License
 
 This project is created for educational and assignment purposes.

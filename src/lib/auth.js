@@ -8,14 +8,16 @@ if (!uri) {
   throw new Error("MONGODB_URI is missing");
 }
 
+// Mongo client
 const client = new MongoClient(uri);
 
-const db = client.db("drivefleet");
+// connect once
+await client.connect();
+
+const db = client.db("drivefleetDB");
 
 export const auth = betterAuth({
-  database: mongodbAdapter(db, {
-    client,
-  }),
+  database: mongodbAdapter(db),
 
   emailAndPassword: {
     enabled: true,
@@ -23,16 +25,12 @@ export const auth = betterAuth({
 
   socialProviders: {
     google: {
-      clientId:
-        process.env.GOOGLE_CLIENTID || "",
-
-      clientSecret:
-        process.env.GOOGLE_SECRET || "",
+      clientId: process.env.GOOGLE_CLIENTID || "",
+      clientSecret: process.env.GOOGLE_SECRET || "",
     },
   },
 
-  secret:
-    process.env.BETTER_AUTH_SECRET,
+  secret: process.env.BETTER_AUTH_SECRET || "",
 
   baseURL:
     process.env.BETTER_AUTH_URL ||

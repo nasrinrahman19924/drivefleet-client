@@ -14,7 +14,7 @@ export function proxy(request) {
     request.nextUrl.pathname.startsWith(route)
   );
 
-  // যদি token না থাকে
+  
   if (isProtected && !token) {
 
     return NextResponse.redirect(

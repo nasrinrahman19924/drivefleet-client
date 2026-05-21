@@ -7,3 +7,21 @@
   padding-inline: 16px;
 }
 
+body {
+  background: #f5f7fb;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+button {
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.02);
+}
+

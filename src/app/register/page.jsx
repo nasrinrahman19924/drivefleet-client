@@ -39,7 +39,7 @@ const RegisterPage = () => {
             return setError("Must contain lowercase letter");
         }
 
-        // better auth signup
+        
 
         const { data, error } = await authClient.signUp.email({
             email,
@@ -47,6 +47,7 @@ const RegisterPage = () => {
             name,
             image,
         });
+        
 
         if (error) {
             toast.error(error.message);
@@ -61,7 +62,12 @@ const RegisterPage = () => {
 const handleGoogleSignin = async() => {
     await authClient.signIn.social({
         provider: "google"
-    })
+    });
+
+    await api.post("/jwt", {
+    email: result.data.user.email
+  });
+
 
   }
 

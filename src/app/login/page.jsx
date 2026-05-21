@@ -23,6 +23,10 @@ const LoginPage = () => {
             password,
         });
 
+        await api.post("http://localhost:5000/jwt", {
+            email: user.email,
+        });
+
         if (error) {
             toast.error(error.message);
             return;
@@ -32,58 +36,61 @@ const LoginPage = () => {
 
         router.push("/");
     };
-const handleGoogleSignin = async() => {
-    await authClient.signIn.social({
-        provider: "google"
-    })
+    const handleGoogleSignin = async () => {
+        await authClient.signIn.social({
+            provider: "google"
+        });
+        await api.post("/jwt", {
+            email: result.data.user.email
+        });
 
-  }
+    }
 
 
 
     return (
         <div className="min-h-screen flex justify-center items-center">
 
-           <Card>
-             <form
-                onSubmit={handleLogin}
-                className="w-full max-w-md border p-10 rounded-2xl"
-            >
+            <Card>
+                <form
+                    onSubmit={handleLogin}
+                    className="w-full max-w-md border p-10 rounded-2xl"
+                >
 
-                <h2 className="text-4xl font-bold text-center mb-8">
-                    Login
-                </h2>
-
-                <div className="space-y-5">
-
-                    <input
-                        className="w-full border p-4 rounded-lg"
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                    />
-
-                    <input
-                        className="w-full border p-4 rounded-lg"
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                    />
-
-                    <button className="w-full bg-cyan-500 text-white py-4 rounded-lg">
+                    <h2 className="text-4xl font-bold text-center mb-8">
                         Login
-                    </button>
+                    </h2>
+
+                    <div className="space-y-5">
+
+                        <input
+                            className="w-full border p-4 rounded-lg"
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                        />
+
+                        <input
+                            className="w-full border p-4 rounded-lg"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                        />
+
+                        <button className="w-full bg-cyan-500 text-white py-4 rounded-lg">
+                            Login
+                        </button>
+                    </div>
+                </form>
+                <div className="flex justify-center items-center gap-3">
+                    <Separator />
+                    <div className="whitespace-nowrap"> Or sign up with </div>
+                    <Separator />
                 </div>
-            </form>
-             <div className="flex justify-center items-center gap-3">
-            <Separator/>
-           <div className="whitespace-nowrap"> Or sign up with </div>
-              <Separator/>
-            </div>
-        <div>
-            <Button onClick={handleGoogleSignin} variant="outline" className={'w-full rounded-none'}><FcGoogle/> Sign in with Google</Button>
-        </div>
-           </Card>
+                <div>
+                    <Button onClick={handleGoogleSignin} variant="outline" className={'w-full rounded-none'}><FcGoogle /> Sign in with Google</Button>
+                </div>
+            </Card>
         </div>
     );
 };

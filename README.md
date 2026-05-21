@@ -1,36 +1,247 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+🚗 DriveFleet BD - Car Rental Platform
 
-First, run the development server:
+🌐 Live Website
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Frontend: https://drivefleet-client-dd1z.vercel.app
+Backend: https://drivefleet-server-psi-dusky.vercel.app
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📌 Project Overview
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+DriveFleet BD is a full-stack MERN based Car Rental Platform where users can explore available cars, book cars, manage their own listed vehicles, and securely authenticate using Email/Password or Google Login.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This platform includes modern UI/UX, JWT Authentication, Protected Routes, Search & Filter functionality, Booking System, and Responsive Design.
 
-## Learn More
+✨ Key Features
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🔐 Authentication & Security
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+User Registration & Login
+Google Authentication
+JWT Token Authentication
+HTTPOnly Cookie Security
+Protected Private Routes
+Secure Backend API
+🚘 Car Management
 
-## Deploy on Vercel
+Add New Car
+Update Car Information
+Delete Car
+View All Cars
+View Car Details
+Availability Status
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📅 Booking System
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Book Available Cars
+Driver Requirement Option
+Special Booking Notes
+Total Price Calculation
+My Bookings Page
+Booking Count Increment System
+
+🔍 Search & Filter
+
+Search Cars by Name
+Filter by Car Type
+Dynamic Query Support
+
+🎨 UI/UX Features
+
+Fully Responsive Design
+Modern Interface
+Toast Notifications
+Loading Spinner
+Sweet User Experience
+Custom 404 Page
+
+
+🛠️ Technologies Used
+
+####Frontend
+
+React.js
+Next.js
+Tailwind CSS
+HeroUI
+React Hot Toast
+
+####Backend
+
+Node.js
+Express.js
+MongoDB
+JWT
+Cookie Parser
+CORS
+Authentication
+Better Auth Authentication
+Google Login
+JWT Authentication
+
+
+📂 Project Structure
+
+src/
+│
+├── app/
+│   ├── page.jsx
+│   ├── login/
+│   ├── register/
+│   ├── explore-cars/
+│   ├── add-car/
+│   ├── my-bookings/
+│   ├── my-cars/
+│   └── api\auth\[...all]
+│
+├── components/
+│   ├── cards
+│   ├── dashboard
+│   ├── home
+│   ├── modals
+│   ├── shared
+|
+├── Services/api
+├── lib/
+└── proxy
+
+
+
+🗄️ Database Collections
+
+
+
+Cars Collection
+{
+  carName,
+  dailyRentPrice,
+  carType,
+  imageUrl,
+  seatCapacity,
+  pickupLocation,
+  description,
+  availability,
+  booking_count,
+  userEmail,
+  createdAt
+}
+Bookings Collection
+{
+  carId,
+  userEmail,
+  driverNeeded,
+  specialNote,
+  bookingDate,
+  totalPrice
+}
+
+
+🔑 JWT Authentication Flow
+
+Login Process
+User logs in
+Server generates JWT token
+Token stored in HTTPOnly Cookie
+Middleware verifies token for protected routes
+Example
+jwt.sign(user, secret)
+res.cookie("token", token,{
+   httpOnly:true
+})
+
+
+🔒 Protected Routes
+
+The following routes are private:
+
+Add Car
+My Bookings
+My Added Cars
+
+Users must be authenticated to access these pages.
+
+
+
+🔎 Search Functionality
+
+Users can search cars dynamically by car name.
+
+/cars?search=sports
+
+
+🎯 Filter Functionality
+
+Cars can be filtered by type:
+SUV
+Sedan
+Sports
+Luxury
+
+
+📈 Booking Count Increment
+
+Every successful booking increases the booking count automatically using MongoDB $inc.
+
+$inc:{
+   booking_count:1
+}
+🚀 Deployment
+
+Frontend Deployment:: Vercel
+Backend Deployment:: Vercel
+
+⚙️ Environment Variables
+
+Client Side
+
+NEXT_PUBLIC_API_URL=
+MONGODB_URI=
+JWT_SECRET=
+BETTER_AUTH_SECRET=
+GOOGLE_CLIENTID=
+GOOGLE_SECRET=
+
+Server Side
+
+MONGODB_URI=
+JWT_SECRET=
+PORT=
+
+
+📸 Home Page Sections
+
+Hero Banner
+Available Cars
+Footer
+
+
+Premium Services
+📱 Responsive Design
+
+This project is fully responsive for:
+
+Mobile Devices
+Tablets
+Laptops
+Desktop Screens
+
+📦 NPM Packages Used
+
+npm install react-hot-toast
+npm install axios
+npm install jsonwebtoken
+npm install cookie-parser
+npm install cors
+npm install mongodb
+npm better auth and many more
+
+
+👨‍💻 Author
+
+
+G. M. SHAHINUR RAHMAN
+
+📄 License
+
+This project is created for educational and assignment purposes.

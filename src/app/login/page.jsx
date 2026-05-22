@@ -1,10 +1,10 @@
 "use client"
 
+import api from "@/services/api";
 import { authClient } from "@/lib/auth-client";
 import { Button, Card, Separator } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import api from "@/services/api";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = () => {
@@ -42,15 +42,19 @@ const LoginPage = () => {
 
     const handleGoogleSignin = async () => {
 
-    const result =
-      await authClient.signIn.social({
-        provider: "google"
-      });
-
-    await api.post("/jwt", {
-      email: result.data.user.email
+  const result =
+    await authClient.signIn.social({
+      provider: "google",
     });
-}
+
+  await api.post("/jwt", {
+    email: result.data.user.email,
+  });
+
+  toast.success("Google Login Successful");
+
+  router.push("/");
+};
 
 
 

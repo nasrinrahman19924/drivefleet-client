@@ -1,22 +1,17 @@
+import "server-only";
+
 import { betterAuth } from "better-auth";
-import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
+import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI;
+const client = new MongoClient(
+  process.env.MONGODB_URI
+);
 
-if (!uri) {
-  throw new Error("MONGODB_URI is missing");
-}
-
-// Mongo client
-const client = new MongoClient(uri);
-
-// connect once
-await client.connect();
-
-const db = client.db("drivefleetDB");
+const db = client.db("driveFleetDB");
 
 export const auth = betterAuth({
+
   database: mongodbAdapter(db),
 
   emailAndPassword: {
@@ -25,14 +20,17 @@ export const auth = betterAuth({
 
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENTID || "",
-      clientSecret: process.env.GOOGLE_SECRET || "",
+      clientId:
+        process.env.GOOGLE_CLIENT_ID,
+
+      clientSecret:
+        process.env.GOOGLE_CLIENT_SECRET,
     },
   },
 
-  secret: process.env.BETTER_AUTH_SECRET || "",
+  secret:
+    process.env.BETTER_AUTH_SECRET,
 
   baseURL:
-    process.env.BETTER_AUTH_URL ||
-    "http://localhost:3000",
+    process.env.BETTER_AUTH_URL,
 });

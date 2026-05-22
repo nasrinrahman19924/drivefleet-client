@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 
-export function middleware(request) {
+export function proxy(request) {
 
-  const token = request.cookies.get("token")?.value;
+  const token =
+    request.cookies.get("token")?.value;
 
   const protectedRoutes = [
     "/add-car",
@@ -10,11 +11,13 @@ export function middleware(request) {
     "/my-bookings",
   ];
 
-  const isProtected = protectedRoutes.some(route =>
-    request.nextUrl.pathname.startsWith(route)
-  );
+  const isProtected =
+    protectedRoutes.some(route =>
+      request.nextUrl.pathname.startsWith(route)
+    );
 
   if (isProtected && !token) {
+
     return NextResponse.redirect(
       new URL("/login", request.url)
     );

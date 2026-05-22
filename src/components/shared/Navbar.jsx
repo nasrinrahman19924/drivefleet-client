@@ -23,8 +23,8 @@ const Navbar = () => {
     const setJwtCookie = async () => {
       if (user?.email) {
         try {
-          await api.post("https://drivefleet-server-psi-dusky.vercel.app/jwt", {
-            email: user.email,
+          await api.post("/jwt", {
+            email: user.email
           });
         } catch (err) {
           console.log("JWT error:", err.message);

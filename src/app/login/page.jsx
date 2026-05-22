@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { Button, Card, Separator } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import api from "@/services/api";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = () => {
@@ -11,6 +12,7 @@ const LoginPage = () => {
     const router = useRouter();
 
     const handleLogin = async (e) => {
+
         e.preventDefault();
 
         const form = e.target;
@@ -18,33 +20,37 @@ const LoginPage = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        const { data, error } = await authClient.signIn.email({
-            email,
-            password,
-        });
-
-        await api.post("http://localhost:5000/jwt", {
-            email: user.email,
-        });
+        const { data, error } =
+            await authClient.signIn.email({
+                email,
+                password,
+            });
 
         if (error) {
             toast.error(error.message);
             return;
         }
 
+        await api.post("/jwt", {
+            email,
+        });
+
         toast.success("Login Successful");
 
         router.push("/");
     };
-    const handleGoogleSignin = async () => {
-        await authClient.signIn.social({
-            provider: "google"
-        });
-        await api.post("/jwt", {
-            email: result.data.user.email
-        });
 
-    }
+    const handleGoogleSignin = async () => {
+
+    const result =
+      await authClient.signIn.social({
+        provider: "google"
+      });
+
+    await api.post("/jwt", {
+      email: result.data.user.email
+    });
+}
 
 
 

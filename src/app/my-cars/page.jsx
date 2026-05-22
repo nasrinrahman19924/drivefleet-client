@@ -27,10 +27,12 @@ const MyCarsPage = () => {
 
   const fetchCars = async () => {
 
-    const res = await api.get(`/my-cars/${user.email}`);
+  const res = await api.get(
+    `/my-cars?email=${user.email}`
+  );
 
-    setCars(res.data);
-  };
+  setCars(res.data);
+};
 
   const handleDelete = async (id) => {
 

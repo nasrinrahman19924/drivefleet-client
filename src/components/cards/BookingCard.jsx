@@ -14,6 +14,11 @@ const BookingCard = ({ car }) => {
 
     e.preventDefault();
 
+    if (!user) {
+      toast.error("Please login first");
+      return;
+    }
+
     const form = e.target;
 
     const bookingData = {

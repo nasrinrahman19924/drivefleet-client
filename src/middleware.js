@@ -1,22 +1,20 @@
 import { NextResponse } from "next/server";
 
-export function proxy(request) {
+export function middleware(request) {
 
   const token = request.cookies.get("token")?.value;
 
   const protectedRoutes = [
     "/add-car",
     "/my-cars",
-    "/my-bookings"
+    "/my-bookings",
   ];
 
   const isProtected = protectedRoutes.some(route =>
     request.nextUrl.pathname.startsWith(route)
   );
 
-  
   if (isProtected && !token) {
-
     return NextResponse.redirect(
       new URL("/login", request.url)
     );

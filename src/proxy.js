@@ -1,29 +1,17 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server'
+import { auth } from './lib/auth'
+import { headers } from 'next/headers'
 
-export function proxy(request) {
+// This function can be marked `async` if using `await` inside
+export async function proxy(request) {
+    const session = await auth.api.getSession({
+        headers: await headers()
+    })
 
-  const token =
-    request.cookies.get("token")?.value;
+    if(!session) {
+         return NextResponse.redirect(new URL('/login', request.url))
+    }
 
-  const protectedRoutes = [
-    "/add-car",
-    "/my-cars",
-    "/my-bookings",
-  ];
-
-  const isProtected =
-    protectedRoutes.some(route =>
-      request.nextUrl.pathname.startsWith(route)
-    );
-
-  if (isProtected && !token) {
-
-    return NextResponse.redirect(
-      new URL("/login", request.url)
-    );
-  }
-
-  return NextResponse.next();
 }
 
 export const config = {
